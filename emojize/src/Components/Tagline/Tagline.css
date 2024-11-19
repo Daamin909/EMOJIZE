@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
+.desc-container {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1rem;
+}
+
+.desc {
+  font-family: "Pacifico", serif;
+  font-size: 1.8rem;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  animation: fadeIn 1.5s ease-out;
+}
+
+.music-note {
+  display: inline-block;
+  animation: bounce 0.5s ease infinite alternate;
+}
+
+.glow {
+  display: inline-block;
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #22d3ee,
+      0 0 35px #22d3ee, 0 0 40px #22d3ee, 0 0 50px #22d3ee, 0 0 75px #22d3ee;
+  }
+  to {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #22d3ee,
+      0 0 70px #22d3ee, 0 0 80px #22d3ee, 0 0 100px #22d3ee, 0 0 150px #22d3ee;
+  }
+}
+
+@media (max-width: 768px) {
+  .desc {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .desc {
+    font-size: 1.2rem;
+  }
+}

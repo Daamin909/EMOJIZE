@@ -1,27 +1,17 @@
 import React from "react";
+import "./Navbar.css";
 
 const Navbar = () => {
   return (
-    <header className="fixed top-0 left-0 right-0 bg-gray-900 p-4 z-10 flex justify-between items-center">
+    <header className="navbar">
       <div>
-        <h1 className="text-3xl font-bold tracking-wider font-mono bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
-          E M O J I Z E
-        </h1>
+        <h1 className="logo">E M O J I Z E</h1>
       </div>
-      <div className="flex items-center">
-        <p className="text-sm font-light text-gray-400 mr-4">
-          Your vibe, your music!
-        </p>
-        <div className="flex space-x-2">
-          <div className="w-2 h-8 bg-cyan-500 animate-pulse"></div>
-          <div
-            className="w-2 h-8 bg-blue-500 animate-pulse"
-            style={{ animationDelay: "0.2s" }}
-          ></div>
-          <div
-            className="w-2 h-8 bg-purple-500 animate-pulse"
-            style={{ animationDelay: "0.4s" }}
-          ></div>
+      <div className="tagline-container">
+        <div className="music-bars">
+          <div className="bar bar-1"></div>
+          <div className="bar bar-2"></div>
+          <div className="bar bar-3"></div>
         </div>
       </div>
     </header>

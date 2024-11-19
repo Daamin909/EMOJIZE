@@ -1,0 +1,77 @@
+.song-item {
+  display: flex;
+  align-items: center;
+  background-color: #374151;
+  border-radius: 0.375rem;
+  padding: 0.5rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.song-item:hover {
+  background-color: #4b5563;
+  transform: scale(1.02) translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.song-info {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.album-art {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  margin-right: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.play-button {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #22d3ee;
+  border-radius: 9999px;
+  margin-right: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.play-button:hover {
+  background-color: #06b6d4;
+  transform: scale(1.1);
+}
+
+.play-icon {
+  color: white;
+}
+
+.song-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.song-title {
+  font-weight: 600;
+  color: white;
+  transition: color 0.2s;
+}
+
+.song-item:hover .song-title {
+  color: #22d3ee;
+}
+
+.song-artist {
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+.song-duration {
+  font-size: 0.875rem;
+  color: #9ca3af;
+}

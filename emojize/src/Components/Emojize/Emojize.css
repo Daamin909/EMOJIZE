@@ -1,0 +1,128 @@
+.emoji-playlist-generator {
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #111827, #1f2937);
+  color: white;
+}
+
+.main-content {
+  padding-top: 6rem;
+  padding-bottom: 4rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.playlist-wrapper {
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+
+.loading-animation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.music-note {
+  font-size: 2rem;
+  margin: 0 0.5rem;
+  animation: bounce 0.6s infinite alternate;
+}
+
+.music-note:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.music-note:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-20px);
+  }
+}
+
+.loading-text {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: #a0aec0;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to bottom right, #0e1a24, #1a2331);
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+#dummy {
+  opacity: 0;
+  cursor: default;
+}
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer-link {
+  color: #9ca3af;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.footer-link:hover {
+  color: #22d3ee;
+  transform: scale(1.1);
+}
+
+.footer-text {
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.main-content {
+  animation: fadeInUp 0.5s ease-out;
+}

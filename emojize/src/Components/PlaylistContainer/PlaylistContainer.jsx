@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { X } from "lucide-react";
 import SongItem from "../SongItem/SongItem";
+import "./PlaylistContainer.css";
 
 const PlaylistContainer = ({ playlist, onClose }) => {
   const [showContainer, setShowContainer] = useState(false);
@@ -19,34 +20,24 @@ const PlaylistContainer = ({ playlist, onClose }) => {
   }, []);
 
   return (
-    <div
-      className={`bg-gray-800 rounded-lg p-4 shadow-xl transition-opacity duration-500 ${
-        showContainer ? "opacity-100" : "opacity-0"
-      }`}
-    >
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-bold text-white">Your Playlist</h2>
+    <div className={`playlist-container ${showContainer ? "show" : ""}`}>
+      <div className="playlist-header">
+        <h2 className="playlist-title">Your Playlist</h2>
         <button
-          className="text-gray-400 hover:text-white transition-colors duration-200"
+          className="close-button"
           onClick={onClose}
           aria-label="Close playlist"
         >
           <X size={24} />
         </button>
       </div>
-      <div className="space-y-2">
+      <div className="song-list">
         {playlist.map((song) => (
           <div
             key={song.id}
-            className={`transition-opacity duration-500 ${
-              showItems ? "opacity-100" : "opacity-0"
-            }`}
+            className={`song-item-wrapper ${showItems ? "show" : ""}`}
           >
-            <div
-              className={`transition-opacity duration-500 ${
-                showContent ? "opacity-100" : "opacity-0"
-              }`}
-            >
+            <div className={`song-item-content ${showContent ? "show" : ""}`}>
               <SongItem song={song} />
             </div>
           </div>
