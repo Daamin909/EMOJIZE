@@ -2,7 +2,7 @@ from groq import Groq
 import os
 from spotify import search_songs, create_playlist
 from pymongo import MongoClient
-z
+
 
 def make_playlist(emojis):
     clientDB = MongoClient(os.getenv("MONGO_URL"))
