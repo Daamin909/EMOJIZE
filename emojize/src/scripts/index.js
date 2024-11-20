@@ -6,15 +6,15 @@ const make_playlist = async (
   setPlaylist,
   setShowPlaylist
 ) => {
-  const resp = await axios.post("http://127.0.0.1:5000/api/get-playlist", {
-    emojis,
-  });
+  const resp = await axios.post(
+    "https://emojize-backend.onrender.com/api/get-playlist",
+    {
+      emojis,
+    }
+  );
   setIsGenerating(false);
   setPlaylist(resp.data);
   setShowPlaylist(true);
 };
-
-
-
 
 export default make_playlist;
