@@ -11,9 +11,9 @@ def search_songs(access_token, genre):
 
     for market in markets:
         params = {
-            "q": f"{genre} songs",
+            "q": f"{genre}",
             "type": "track",
-            "limit": 50,
+            "limit": 20,
             "market": market 
         }
         response = requests.get(url, headers=headers, params=params)
@@ -29,8 +29,7 @@ def search_songs(access_token, genre):
                 }
                 aggregated_songs.append(song_info)
 
-    selected_songs = random.sample(aggregated_songs, min(25, len(aggregated_songs)))
-    return selected_songs
+    return aggregated_songs
 
 
 def create_playlist(user_id, access_token, playlist_name, songs, emojis):
