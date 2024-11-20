@@ -1,16 +1,17 @@
-import requests, json, random
+import requests, random
+
 
 def search_songs(access_token, genre):
     url = "https://api.spotify.com/v1/search"
     headers = {
         "Authorization": f"Bearer {access_token}",
     }
-    markets = ["US", "GB", "AU", "CA", "NZ"]
+    markets = ["US"]
     aggregated_songs = []
 
     for market in markets:
         params = {
-            "q": genre,
+            "q": f"{genre} songs",
             "type": "track",
             "limit": 50,
             "market": market 
@@ -40,7 +41,7 @@ def create_playlist(user_id, access_token, playlist_name, songs, emojis):
     }
     payload = {
         "name": playlist_name,
-        "description": f"A playlist made using EMOJIZE for the emojis - {emojis}",
+        "description": f"A playlist made using E M O J I Z E for the emojis - {emojis}",
         "public": True
     }
 
@@ -49,6 +50,6 @@ def create_playlist(user_id, access_token, playlist_name, songs, emojis):
     add_tracks_url = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"
     song_uris = [f"spotify:track:{song['song_id']}" for song in songs]
 
-    add_tracks_response = requests.post(add_tracks_url, headers=headers, json={"uris": song_uris})
+    requests.post(add_tracks_url, headers=headers, json={"uris": song_uris})
 
     return f"https://open.spotify.com/playlist/{playlist_id}"

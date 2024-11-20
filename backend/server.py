@@ -3,14 +3,15 @@ load_dotenv()
 
 from apscheduler.schedulers.background import BackgroundScheduler
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import playlist as p
 from pymongo import MongoClient
 from tokens import refresh_access_token
 import requests
 import os
 
-
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/api/get-playlist', methods=['POST'])
 def getPlaylist():
@@ -18,7 +19,7 @@ def getPlaylist():
     playlist_data = p.make_playlist(emojis)
     return jsonify(playlist_data)
     
-@app.route('/callback', methods=['GET'])
+@app.route('/verifytheaccountonetimeprocessonlypleasedonotvisitthisurletcetctect', methods=['GET'])
 def callback():
     clientDB = MongoClient(os.getenv("MONGO_URL"))
     db = clientDB["emojize"]
@@ -30,7 +31,7 @@ def callback():
     auth_data = {
         'grant_type': 'authorization_code',
         'code': code,
-        'redirect_uri': 'http://localhost:5000/callback',
+        'redirect_uri': 'http://localhost:5000/verifytheaccountonetimeprocessonlypleasedonotvisitthisurletcetctect',
         'client_id': CLIENT_ID,
         'client_secret': CLIENT_SECRET
     }

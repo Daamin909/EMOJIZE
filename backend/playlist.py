@@ -2,8 +2,7 @@ from groq import Groq
 import os
 from spotify import search_songs, create_playlist
 from pymongo import MongoClient
-
-
+z
 
 def make_playlist(emojis):
     clientDB = MongoClient(os.getenv("MONGO_URL"))
@@ -30,7 +29,7 @@ def getGenre(emojis):
     response = client.chat.completions.create(
         model="llama-3.1-70b-versatile",
         messages=[
-            {"role": "system", "content": "You are an emoji identifier Bot. When the user sends emojis, reply with an emotion that suits those emojis. For example, angry emojis corresponds to angriness. A high number of angry emojis should increase the intensity (e.g., \"angry2\"). You can map  emotions like romance, anger, happiness, sadness, fear, surprise, disgust, love, gratitude, confusion, excitement, nostalgia, loneliness, guilt, shame, pride, hope, relief, frustration, boredom, jealousy, empathy, contentment, anticipation, envy, euphoria, melancholy, trust, regret, sympathy, awe and others. If there are repeated emojis, increase the intensity level. Reply with the format: \"(emotion_name)(level_of_intensity_as_an_integer\" Example: \"sad3\" signifies an intensity of sadness at level 3. The maximum level is 5. ONLY AND ONLY REPLY IN THIS FORMAT. DO NOT TAKE LIBERTY OF GIVING EXTRA INFORMATION. DO AS SAID. "},
+            {"role": "system", "content": "You are an emoji identifier Bot. When the user sends emojis, reply with an emotion that suits those emojis. For example, angry emojis corresponds to angriness. A high number of angry emojis should increase the intensity (e.g., \"angry2\"). You can map  emotions like romance, anger, happiness, sadness, fear, surprise, disgust, love, gratitude, confusion, excitement, nostalgia, loneliness, guilt, shame, pride, hope, relief, frustration, boredom, jealousy, empathy, contentment, anticipation, envy, euphoria, melancholy, trust, regret, sympathy, awe and others. If there are repeated emojis, increase the intensity level. Reply with the format: \"(emotion_name)(level_of_intensity_as_an_integer\" Example: \"sad3\" signifies an intensity of sadness at level 3. The maximum level is 5. You can also reply with things and abstract nouns. HOWEVER ONLY LIMIT REPLY TO ONE WORD + INTENSITY. ONLY AND ONLY REPLY IN THIS FORMAT. DO NOT TAKE LIBERTY OF GIVING EXTRA INFORMATION. DO AS SAID. "},
             {"role": "user", "content": emojis}
         ],
         temperature=1,
@@ -42,7 +41,7 @@ def getGenre(emojis):
     response = client.chat.completions.create(
         model="llama-3.1-70b-versatile",
         messages=[
-            {"role": "system", "content": "You are a genre identifier bot. The user will send a human emotion to you along with its intensity in the format \"(emotion)(emotion_intensity)\" Reply with a musical genre for example rock, metal or ANY MUSIC GENRE AT ALL. DO NOT TAKE LIBERTY TO GIVE EXTRA INFO. DO AS SAID. Reply with \"(musical_genre_name)\". DO NOT DISOBEY MY INSTRUCTIONS."},
+            {"role": "system", "content": "You are a genre identifier bot. The user will send a human emotion to you along with its intensity in the format \"(emotion)(emotion_intensity)\" Reply with a musical genre for example rock, metal or ANY MUSIC GENRE AT ALL. Like joy, happiness can be country music or pop. Angry can be rap, metal etc. Respond with actual legit musical genres, not kids rhymes etc. For example, happiness and joy can be pop or funk. DO NOT TAKE LIBERTY TO GIVE EXTRA INFO. DO AS SAID. Reply with \"(musical_genre_name)\". DO NOT DISOBEY MY INSTRUCTIONS."},
             {"role": "user", "content": response.choices[0].message.content}
         ],
         temperature=1,
