@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { X } from "lucide-react";
+import { X, Play } from "lucide-react";
 import SongItem from "../SongItem/SongItem";
 import "./PlaylistContainer.css";
 
@@ -22,7 +22,16 @@ const PlaylistContainer = ({ playlist, onClose }) => {
   return (
     <div className={`playlist-container ${showContainer ? "show" : ""}`}>
       <div className="playlist-header">
-        <h2 className="playlist-title">Your Playlist</h2>
+        <a
+          href={`${playlist.playlist_url}`}
+          target="_blank"
+          className="playlist-title"
+        >
+          <button className="play-button" id="main-play">
+            <Play size={16} className="play-icon" />
+          </button>
+          {playlist.playlist_name}
+        </a>
         <button
           className="close-button"
           onClick={onClose}
@@ -32,9 +41,9 @@ const PlaylistContainer = ({ playlist, onClose }) => {
         </button>
       </div>
       <div className="song-list">
-        {playlist.map((song) => (
+        {playlist.songs.map((song) => (
           <div
-            key={song.id}
+            key={song.song_id}
             className={`song-item-wrapper ${showItems ? "show" : ""}`}
           >
             <div className={`song-item-content ${showContent ? "show" : ""}`}>

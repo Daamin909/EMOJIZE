@@ -134,7 +134,6 @@
   scrollbar-width: thin;
   scrollbar-color: #000000 #1f2937;
 }
-
 @keyframes fadeIn {
   from {
     opacity: 0;

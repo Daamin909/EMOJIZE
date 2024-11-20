@@ -2,20 +2,19 @@ import React, { useState } from "react";
 import { ChevronDown, ArrowRight } from "lucide-react";
 import "./InputBar.css";
 
-const InputBar = ({ onSendClick, onEmojiSelect, inputRef }) => {
+
+const InputBar = ({
+  onSendClick,
+  onEmojiSelect,
+  inputRef,
+  setShowEmojiGrid,
+  showEmojiGrid,
+}) => {
   const [inputValue, setInputValue] = useState("");
-  const [showEmojiGrid, setShowEmojiGrid] = useState(false);
-
-  const handleSendClick = () => {
-    if (inputValue.trim()) {
-      onSendClick(inputValue);
-      setInputValue("");
-    }
-  };
-
+  console.log(inputValue);
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      handleSendClick();
+      onSendClick(inputValue);
     }
   };
 
@@ -209,7 +208,7 @@ const InputBar = ({ onSendClick, onEmojiSelect, inputRef }) => {
           className="input-field"
         />
         <button
-          onClick={handleSendClick}
+          onClick={() => onSendClick(inputValue)}
           className="send-button"
           aria-label="Send"
         >
@@ -231,8 +230,7 @@ const InputBar = ({ onSendClick, onEmojiSelect, inputRef }) => {
                     key={index}
                     className="grid-emoji-button"
                     onClick={() => {
-                      onEmojiSelect(emoji);
-                      1;
+                      onEmojiSelect(emoji, setInputValue);
                     }}
                   >
                     {emoji}
@@ -248,3 +246,4 @@ const InputBar = ({ onSendClick, onEmojiSelect, inputRef }) => {
 };
 
 export default InputBar;
+

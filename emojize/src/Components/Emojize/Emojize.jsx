@@ -8,6 +8,7 @@ import "./Emojize.css";
 import { Info, Mail } from "lucide-react";
 import Tagline from "../Tagline/Tagline";
 import ErrorMessage from "./../ErrorMessage/ErrorMessage";
+import make_playlist from "../../scripts";
 
 const Emojize = () => {
   const [isGenerating, setIsGenerating] = useState(false);
@@ -16,20 +17,33 @@ const Emojize = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const playlistRef = useRef(null);
   const inputRef = useRef(null);
+  const [showEmojiGrid, setShowEmojiGrid] = useState(false);
+
   const areEmojis = (text) => {
-    const emojiPattern = /^[\p{Emoji}\p{Extended_Pictographic}]+$/u;
+    const emojiPattern =
+      /^[😀😃😄😁😆😅😂🤣😊😇🙂🙃😉😌😍🥰😘😗😙😚😋😜🤪😝🤑🤗🤭🤫🤔🤐🤨😐😑😶😏😒🙄😬🤥😌😔😪🤤😴😷🤒🤕🤢🤮🤧🥵🥶🥴😵🤯🤠🥳😎🤓🧐😕😟🙁☹️😮😯😲😳🥺😦😧😨😰😥😢😭😱😖😣😞😓😩😫🥱😤😡😠🤬😈👿💀☠️💩🤡👹👺👻👽👾🤖💋💌💘💝💖💗💓💞💕💟❣️💔❤️🧡💛💚💙💜🤎🖤🤍💯💢💥💫👁️‍🗨️🗨️🗯️💭💤👋🤚🖐️✋🖖👌🤏✌️🤞🤟🤘🤙👈👉👆👇🖕☝️👍👎✊👊🤛🤜👏🙌👐🤲🤝🙏✍️💅🤳💪🦾🦵🦿🦶👣👀👁️🧠🦷🦴]+$/;
     return emojiPattern.test(text);
   };
   const handleSendClick = (input) => {
-    if (!areEmojis(input)) {
-      displayError("Enter Emojis only! and try again.");
+    setShowEmojiGrid(false);
+    if (input.length === 0) {
+      displayError("Enter an emoji!");
+      return;
+    } else if (!areEmojis(input)) {
+      displayError("Enter emojis from the dropdown only!");
+      return;
+    } else if (input.length > 50) {
+      displayError("Enter upto 50 emojis only!");
       return;
     }
+    console.log("making playlist");
+
     setIsGenerating(true);
     setPlaylist([]);
+    make_playlist(input, setIsGenerating, setPlaylist, setShowPlaylist);
   };
-  const handleEmojiSelect = (emoji) => {
-    inputRef.current.value = inputRef.current.value + emoji;
+  const handleEmojiSelect = (emoji, setInputValue) => {
+    setInputValue(inputRef.current.value + emoji);
   };
 
   const displayError = (text) => {
@@ -44,6 +58,8 @@ const Emojize = () => {
         <Tagline />
         <InputBar
           inputRef={inputRef}
+          showEmojiGrid={showEmojiGrid}
+          setShowEmojiGrid={setShowEmojiGrid}
           onSendClick={handleSendClick}
           onEmojiSelect={handleEmojiSelect}
         />
@@ -74,7 +90,11 @@ const Emojize = () => {
           <Mail size={18} />
         </a>
         <p className="footer-text">Made with ❤️ for Hack Club</p>
-        <a href="#" className="footer-link">
+        <a
+          href="https://github.com/daamin909/EMOJIZE"
+          target="_blank"
+          className="footer-link"
+        >
           <Info size={18} />
         </a>
       </footer>
@@ -88,5 +108,7 @@ const Emojize = () => {
     </div>
   );
 };
+
+
 
 export default Emojize;
