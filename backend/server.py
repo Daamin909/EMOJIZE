@@ -1,6 +1,3 @@
-from dotenv import load_dotenv
-load_dotenv()
-
 from apscheduler.schedulers.background import BackgroundScheduler
 from flask import Flask, request, jsonify
 from flask_cors import CORS
