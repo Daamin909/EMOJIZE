@@ -12,7 +12,7 @@ const InputBar = ({
   const [inputValue, setInputValue] = useState("");
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      onSendClick(inputValue);
+      onSendClick(inputValue, setInputValue);
     }
   };
 
@@ -206,7 +206,7 @@ const InputBar = ({
           className="input-field"
         />
         <button
-          onClick={() => onSendClick(inputValue)}
+          onClick={() => onSendClick(inputValue, setInputValue)}
           className="send-button"
           aria-label="Send"
         >
