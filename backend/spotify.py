@@ -1,4 +1,4 @@
-import requests, random
+import requests
 
 
 def search_songs(access_token, genre):

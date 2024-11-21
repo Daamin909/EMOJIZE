@@ -1,7 +1,6 @@
 import os, requests
 from pymongo import MongoClient
 
-
 def refresh_access_token():
     clientDB = MongoClient(os.getenv("MONGO_URL"))
     db = clientDB["emojize"]
