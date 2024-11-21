@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { ChevronDown, ArrowRight } from "lucide-react";
 import "./InputBar.css";
 
-
 const InputBar = ({
   onSendClick,
   onEmojiSelect,
@@ -11,7 +10,6 @@ const InputBar = ({
   showEmojiGrid,
 }) => {
   const [inputValue, setInputValue] = useState("");
-  console.log(inputValue);
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       onSendClick(inputValue);
@@ -246,4 +244,3 @@ const InputBar = ({
 };
 
 export default InputBar;
-

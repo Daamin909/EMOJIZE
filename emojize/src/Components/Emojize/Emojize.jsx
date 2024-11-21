@@ -36,7 +36,6 @@ const Emojize = () => {
       displayError("Enter upto 50 emojis only!");
       return;
     }
-    console.log("making playlist");
 
     setIsGenerating(true);
     setPlaylist([]);
@@ -108,7 +107,5 @@ const Emojize = () => {
     </div>
   );
 };
-
-
 
 export default Emojize;
