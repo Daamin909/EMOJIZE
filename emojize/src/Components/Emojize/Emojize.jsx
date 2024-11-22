@@ -79,7 +79,7 @@ const Emojize = () => {
           onSendClick={handleSendClick}
           onEmojiSelect={handleEmojiSelect}
         />
-        {!showPlaylist && (
+        {!showPlaylist && !isGenerating && (
           <CustomizationPanel
             onCustomizationChange={handleCustomizationChange}
           />
