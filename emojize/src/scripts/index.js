@@ -2,6 +2,7 @@ import axios from "axios";
 
 const make_playlist = async (
   emojis,
+  customization,
   setIsGenerating,
   setPlaylist,
   setShowPlaylist
@@ -10,6 +11,7 @@ const make_playlist = async (
     "https://emojize-backend.onrender.com/api/get-playlist",
     {
       emojis,
+      customization,
     }
   );
   setIsGenerating(false);

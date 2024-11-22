@@ -20,14 +20,14 @@ const CustomizationPanel = ({ onCustomizationChange }) => {
         <input
           type="range"
           min="5"
-          max="40"
+          max="25"
           value={numberOfSongs}
           onChange={(e) => {
             setNumberOfSongs(Number(e.target.value));
             handleChange("numberOfSongs", Number(e.target.value));
           }}
           className="range-slider"
-          style={{ "--value-percent": `${((numberOfSongs - 5) / 35) * 100}%` }}
+          style={{ "--value-percent": `${((numberOfSongs - 5) / 20) * 100}%` }}
         />
 
         <div className="genre-inputs">

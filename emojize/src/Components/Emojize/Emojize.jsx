@@ -16,13 +16,14 @@ const Emojize = () => {
   const [playlist, setPlaylist] = useState([]);
   const [showPlaylist, setShowPlaylist] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+
   const playlistRef = useRef(null);
   const inputRef = useRef(null);
   const [customization, setCustomization] = useState({
-    numberOfSongs: 10,
+    numberOfSongs: 20,
     moreGenre: "",
     lessGenre: "",
-    includeExplicit: false,
+    includeExplicit: true,
   });
   const [showEmojiGrid, setShowEmojiGrid] = useState(false);
 
@@ -46,7 +47,13 @@ const Emojize = () => {
     }
     setIsGenerating(true);
     setPlaylist([]);
-    make_playlist(input, setIsGenerating, setPlaylist, setShowPlaylist);
+    make_playlist(
+      input,
+      customization,
+      setIsGenerating,
+      setPlaylist,
+      setShowPlaylist
+    );
   };
   const handleEmojiSelect = (emoji, setInputValue) => {
     setInputValue(inputRef.current.value + emoji);
