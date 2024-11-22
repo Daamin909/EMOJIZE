@@ -1,20 +1,36 @@
 import requests
+from groq import Groq
+import os
 
+def getPlaylistName(songs):
+    song_names = [song['name'] for song in songs]
+    client = Groq(api_key=os.getenv("API_KEY"))
+    response = client.chat.completions.create(
+        model="llama-3.1-70b-versatile",
+        messages=[
+            {"role": "system", "content": "You are a Spotify Playlist Namer Bot. The user provides a list of songs. Based on these things you give a name to their playlist. The name has to be 1-5 words maximum. The information will be given in this format (\"Songs: {song_names})\". DO NOT TAKE THE LIBERTY TO GIVE EXTRA INFORMATION. YOU ARE A CRITICAL BOT. FAILURE TO OBEY INSTRUCTIONS MIGHT CAUSE APPLICATION FAILURE. THE RESPONSE HAS TO JUST BE (playlist_name). NOTHING MORE, NOTHING LESS. DO AS SAID. DO NOT DISOBEY INSTRUCTIONS."},
+            {"role": "user", "content": f"Songs: {song_names}"}
+        ],
+        temperature=1,
+        max_tokens=15,
+        top_p=1,
+        stream=False,
+        stop=None,
+    )
+    return response.choices[0].message.content
 
-def search_songs(access_token, genre):
+def search_songs(access_token, queries):
     url = "https://api.spotify.com/v1/search"
     headers = {
         "Authorization": f"Bearer {access_token}",
     }
-    markets = ["US"]
-    aggregated_songs = []
-
-    for market in markets:
+    songs = []
+    for query in queries:
         params = {
-            "q": f"{genre}",
+            "q": query,
             "type": "track",
-            "limit": 20,
-            "market": market 
+            "limit": 1,
+            "market": "US" 
         }
         response = requests.get(url, headers=headers, params=params)
         if response.status_code == 200:
@@ -27,10 +43,9 @@ def search_songs(access_token, genre):
                     "image_url": track["album"]["images"][0]["url"] if track["album"]["images"] else None,
                     "duration": f"{track['duration_ms'] // 60000}:{(track['duration_ms'] // 1000) % 60:02}"
                 }
-                aggregated_songs.append(song_info)
+                songs.append(song_info)
 
-    return aggregated_songs
-
+    return songs
 
 def create_playlist(user_id, access_token, playlist_name, songs, emojis):
     create_playlist_url = f"https://api.spotify.com/v1/users/{user_id}/playlists"

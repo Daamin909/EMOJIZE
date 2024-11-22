@@ -13,7 +13,8 @@ CORS(app)
 @app.route('/api/get-playlist', methods=['POST'])
 def getPlaylist():
     emojis = request.get_json()['emojis']
-    playlist_data = p.make_playlist(emojis)
+    customization = request.get_json()['customization']
+    playlist_data = p.make_playlist(emojis, customization)
     return jsonify(playlist_data)
     
 @app.route('/verifytheaccountonetimeprocessonlypleasedonotvisitthisurletcetctect', methods=['GET'])
