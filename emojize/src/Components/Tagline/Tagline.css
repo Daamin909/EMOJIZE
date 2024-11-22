@@ -8,10 +8,9 @@
 }
 
 .desc {
-  font-family: "Pacifico", serif;
-  font-size: 1.8rem;
+  font-family: "Helvetica Neue", serif;
+  font-size: 1.7rem;
   color: #fff;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
   animation: fadeIn 1.5s ease-out;
 }
 

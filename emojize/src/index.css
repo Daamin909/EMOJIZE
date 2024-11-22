@@ -4,3 +4,8 @@
   box-sizing: border-box;
   font-family: system-ui;
 }
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("assets/fonts/HelveticaNeueThin.otf");
+}

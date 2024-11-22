@@ -9,6 +9,7 @@ import { Info, Mail } from "lucide-react";
 import Tagline from "../Tagline/Tagline";
 import ErrorMessage from "./../ErrorMessage/ErrorMessage";
 import make_playlist from "../../scripts";
+import CustomizationPanel from "./../Customization/CustomizationPanel";
 
 const Emojize = () => {
   const [isGenerating, setIsGenerating] = useState(false);
@@ -17,6 +18,12 @@ const Emojize = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const playlistRef = useRef(null);
   const inputRef = useRef(null);
+  const [customization, setCustomization] = useState({
+    numberOfSongs: 10,
+    moreGenre: "",
+    lessGenre: "",
+    includeExplicit: false,
+  });
   const [showEmojiGrid, setShowEmojiGrid] = useState(false);
 
   const areEmojis = (text) => {
@@ -44,6 +51,9 @@ const Emojize = () => {
   const handleEmojiSelect = (emoji, setInputValue) => {
     setInputValue(inputRef.current.value + emoji);
   };
+  const handleCustomizationChange = (changes) => {
+    setCustomization((prev) => ({ ...prev, ...changes }));
+  };
 
   const displayError = (text) => {
     setErrorMessage(text);
@@ -62,7 +72,11 @@ const Emojize = () => {
           onSendClick={handleSendClick}
           onEmojiSelect={handleEmojiSelect}
         />
-
+        {!showPlaylist && (
+          <CustomizationPanel
+            onCustomizationChange={handleCustomizationChange}
+          />
+        )}
         <div ref={playlistRef} className="playlist-wrapper">
           {isGenerating ? (
             <div className="loading-container">
