@@ -107,9 +107,9 @@ const Emojize = () => {
 
       <footer className="footer">
         <a href="#" id="dummy" className="footer-link">
-          <Mail size={18} />
+          
         </a>
-        <p className="footer-text">Made with ❤️ for Hack Club</p>
+        <p className="footer-text"></p>
         <a
           href="https://github.com/daamin909/EMOJIZE"
           target="_blank"

@@ -81,9 +81,9 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(to bottom right, #0e1a24, #1a2331);
   padding: 1rem;
   text-align: center;
+  background-color: transparent;
   transition: transform 0.3s ease-in-out;
 }
 #dummy {
