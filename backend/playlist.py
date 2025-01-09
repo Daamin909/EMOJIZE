@@ -15,7 +15,7 @@ def compileQueries(emojis, customization, popular_events, topics):
     if (popular_events == "0"):
         popular_events = None
     response = client.chat.completions.create(
-        model="llama-3.1-70b-versatile",
+        model="llama-3.3-70b-versatile",
         messages=[
             {
             "role": "system",
@@ -34,7 +34,7 @@ def compileQueries(emojis, customization, popular_events, topics):
 def searchFor(emojis):
     client = Groq(api_key=os.getenv("API_KEY"))
     response = client.chat.completions.create(
-        model="llama-3.1-70b-versatile",
+        model="llama-3.3-70b-versatile",
         messages=[
             {
             "role": "system",
@@ -53,7 +53,7 @@ def searchFor(emojis):
 def identifyEvent(emojis):
     client = Groq(api_key=os.getenv("API_KEY"))
     response = client.chat.completions.create(
-        model="llama-3.1-70b-versatile",
+        model="llama-3.3-70b-versatile",
         messages=[
             {
             "role": "system",
@@ -86,11 +86,12 @@ def make_playlist(emojis, customization):
     searchQueries = getSearchQuery(emojis, customization)
     songs = search_songs(queries=searchQueries, access_token=access_token)
     playlist_name = getPlaylistName(songs)
-    playlist = create_playlist(user_id=user_id, access_token=access_token, playlist_name=playlist_name, songs=songs, emojis=emojis)
+    playlistInfo = create_playlist(user_id=user_id, access_token=access_token, playlist_name=playlist_name, songs=songs, emojis=emojis)
 
     playlist_data = {
-        "songs": songs,
         "playlist_name" :playlist_name,
-        "playlist_url": playlist
+        "playlist_id": playlistInfo[0],
+        "playlist_image": playlistInfo[1]
+
     }
     return playlist_data

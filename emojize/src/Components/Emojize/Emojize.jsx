@@ -10,6 +10,7 @@ import Tagline from "../Tagline/Tagline";
 import ErrorMessage from "./../ErrorMessage/ErrorMessage";
 import make_playlist from "../../scripts";
 import CustomizationPanel from "./../Customization/CustomizationPanel";
+import emojis from "../../scripts/emoji";
 
 const Emojize = () => {
   const [isGenerating, setIsGenerating] = useState(false);
@@ -28,10 +29,14 @@ const Emojize = () => {
   const [showEmojiGrid, setShowEmojiGrid] = useState(false);
 
   const areEmojis = (text) => {
-    const emojiPattern =
-      /^[😀😃😄😁😆😅😂🤣😊😇🙂🙃😉😌😍🥰😘😗😙😚😋😜🤪😝🤑🤗🤭🤫🤔🤐🤨😐😑😶😏😒🙄😬🤥😌😔😪🤤😴😷🤒🤕🤢🤮🤧🥵🥶🥴😵🤯🤠🥳😎🤓🧐😕😟🙁☹️😮😯😲😳🥺😦😧😨😰😥😢😭😱😖😣😞😓😩😫🥱😤😡😠🤬😈👿💀☠️💩🤡👹👺👻👽👾🤖💋💌💘💝💖💗💓💞💕💟❣️💔❤️🧡💛💚💙💜🤎🖤🤍💯💢💥💫👁️‍🗨️🗨️🗯️💭💤👋🤚🖐️✋🖖👌🤏✌️🤞🤟🤘🤙👈👉👆👇🖕☝️👍👎✊👊🤛🤜👏🙌👐🤲🤝🙏✍️💅🤳💪🦾🦵🦿🦶👣👀👁️🧠🦷🦴]+$/;
+    let emojiPatternStr = "";
+    emojis.forEach((emoji) => {
+      emojiPatternStr += emoji;
+    });
+    const emojiPattern = new RegExp(`^[${emojiPatternStr}]+$`);
     return emojiPattern.test(text);
   };
+
   const handleSendClick = (input, setInputValue) => {
     setShowEmojiGrid(false);
     setInputValue("");
@@ -52,7 +57,8 @@ const Emojize = () => {
       customization,
       setIsGenerating,
       setPlaylist,
-      setShowPlaylist
+      setShowPlaylist,
+      displayError
     );
   };
   const handleEmojiSelect = (emoji, setInputValue) => {
@@ -95,7 +101,8 @@ const Emojize = () => {
               <p className="loading-text">Creating your playlist...</p>
             </div>
           ) : (
-            showPlaylist && (
+            showPlaylist &&
+            playlist && (
               <PlaylistContainer
                 playlist={playlist}
                 onClose={() => setShowPlaylist(false)}
@@ -106,9 +113,7 @@ const Emojize = () => {
       </main>
 
       <footer className="footer">
-        <a href="#" id="dummy" className="footer-link">
-          
-        </a>
+        <a href="#" id="dummy" className="footer-link"></a>
         <p className="footer-text"></p>
         <a
           href="https://github.com/daamin909/EMOJIZE"

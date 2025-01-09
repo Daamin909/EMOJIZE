@@ -29,7 +29,7 @@ def callback():
     auth_data = {
         'grant_type': 'authorization_code',
         'code': code,
-        'redirect_uri': 'https://emojize-backend.onrender.com/verifytheaccountonetimeprocessonlypleasedonotvisitthisurletcetctect',
+        'redirect_uri': 'http://127.0.0.1:5000/verifytheaccountonetimeprocessonlypleasedonotvisitthisurletcetctect',
         'client_id': CLIENT_ID,
         'client_secret': CLIENT_SECRET
     }

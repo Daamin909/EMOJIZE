@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { X, Play } from "lucide-react";
-import SongItem from "../SongItem/SongItem";
+import { X } from "lucide-react";
 import "./PlaylistContainer.css";
+import "../SongItem/SongItem.css";
 
 const PlaylistContainer = ({ playlist, onClose }) => {
   const [showContainer, setShowContainer] = useState(false);
@@ -23,15 +23,13 @@ const PlaylistContainer = ({ playlist, onClose }) => {
     <div className={`playlist-container ${showContainer ? "show" : ""}`}>
       <div className="playlist-header">
         <a
-          href={`${playlist.playlist_url}`}
+          href={`https://open.spotify.com/playlist/${playlist.playlist_id}`}
           target="_blank"
           className="playlist-title"
         >
-          <button className="play-button" id="main-play">
-            <Play size={16} className="play-icon" />
-          </button>
           {playlist.playlist_name}
         </a>
+
         <button
           className="close-button"
           onClick={onClose}
@@ -40,18 +38,14 @@ const PlaylistContainer = ({ playlist, onClose }) => {
           <X size={24} />
         </button>
       </div>
-      <div className="song-list">
-        {playlist.songs.map((song) => (
-          <div
-            key={song.song_id}
-            className={`song-item-wrapper ${showItems ? "show" : ""}`}
-          >
-            <div className={`song-item-content ${showContent ? "show" : ""}`}>
-              <SongItem song={song} />
-            </div>
-          </div>
-        ))}
-      </div>
+      <iframe
+        src={`https://open.spotify.com/embed/playlist/${playlist.playlist_id}`}
+        width="720"
+        height="380"
+        frameBorder="0"
+        allowtransparency="true"
+        allow="encrypted-media"
+      ></iframe>
     </div>
   );
 };

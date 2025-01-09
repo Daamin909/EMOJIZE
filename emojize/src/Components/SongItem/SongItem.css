@@ -42,7 +42,11 @@
   transition: background-color 0.2s, transform 0.2s;
   cursor: pointer;
 }
-
+.sigmadiv {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
 .play-button:hover {
   background-color: #06b6d4;
   transform: scale(1.1);
