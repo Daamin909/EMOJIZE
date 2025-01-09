@@ -11,7 +11,7 @@ def compileQueries(emojis, customization, popular_events, topics):
     moreOf = customization['moreGenre']
     lessOf = customization['lessGenre']
     includeExplicit = customization['includeExplicit']
-    client = Groq(api_key=os.getenv("API_KEY"))
+    client = Groq(api_key=os.getenv("API_KEY"), http_client=None)
     if (popular_events == "0"):
         popular_events = None
     response = client.chat.completions.create(
