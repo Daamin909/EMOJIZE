@@ -60,6 +60,7 @@ def create_playlist(user_id, access_token, playlist_name, songs, emojis):
     }
 
     response = requests.post(create_playlist_url, headers=headers, json=payload)
+    print(response.json())
     playlist_id = response.json()['id']
     add_tracks_url = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"
     song_uris = [f"spotify:track:{song['song_id']}" for song in songs]
