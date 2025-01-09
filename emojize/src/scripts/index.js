@@ -9,10 +9,13 @@ const make_playlist = async (
   displayError
 ) => {
   try {
-    const resp = await axios.post("http://127.0.0.1:5000/api/get-playlist", {
-      emojis,
-      customization,
-    });
+    const resp = await axios.post(
+      "https://emojize.onrender.com/api/get-playlist",
+      {
+        emojis,
+        customization,
+      }
+    );
     setIsGenerating(false);
     setPlaylist(resp.data);
     setShowPlaylist(true);
