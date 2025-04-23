@@ -10,7 +10,7 @@ const make_playlist = async (
 ) => {
   try {
     const resp = await axios.post(
-      "https://emojize.onrender.com/api/get-playlist",
+      "https://emojize.daamin.hackclub.app/api/get-playlist",
       {
         emojis,
         customization,
